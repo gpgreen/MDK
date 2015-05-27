@@ -32,8 +32,6 @@ import java.awt.Color;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-import com.nomagic.magicdraw.core.Application;
-
 /**
  *
  */
@@ -109,6 +107,19 @@ public class Debug {
         return on;
     }
 
+    /**
+     * Throws and catches an exception and prints a supplied message and stack
+     * trace to stderr if any of the input objects are null.
+     * 
+     * @param msg
+     * @param maybeNullObjects
+     *            variable number of Objects to check if null
+     * @return
+     */
+    public static boolean errorOnNull(String msg, Object... maybeNullObjects) {
+        return errorOnNull(true, msg, maybeNullObjects);
+    }
+
     public static String stackTrace() {
         Exception e = new Exception();
         return stackTrace(e);
@@ -166,45 +177,6 @@ public class Debug {
         return false;
     }
 
-  public static void logWithColor( String msg, Color color ) {
-     Application.getInstance().getGUILog().log(msg);
-      /*JDialog log = gl.getLog();
-    //JPanel jp = getComponentOfType( log, JPanel.class );//(JPanel)((java.awt.Container)log).getComponent( 0 ); //.getComponents();
-    //JEditorPane jep = getComponentOfType( jp, JEditorPane.class );//(JEditorPane)jp.getComponent( 0 );
-    StyledDocument doc = getComponentOfType( log, StyledDocument.class );
-    if ( doc == null ) {
-      JEditorPane jep = getComponentOfType( log, JEditorPane.class );//(JEditorPane)jp.getComponent( 0 );
-      if ( jep != null ) {
-        doc = (StyledDocument)jep.getDocument();
-      } else {
-        System.out.println("ERROR! Failed to find Document!");
-        System.err.println("ERROR! Failed to find Document!");
-        return;
-      }
-    }
-    SimpleAttributeSet set = new SimpleAttributeSet();
-    StyleConstants.setForeground( set, color ); // Color.GREEN
-    int i = doc.getLength();
-    try {
-      doc.insertString( i, msg, set );
-    } catch ( BadLocationException e ) {
-      e.printStackTrace();
-    }*/
-  }
-  
-  /**
-   * Throws and catches an exception and prints a supplied message and stack
-   * trace to stderr if any of the input objects are null.
-   * 
-   * @param msg
-   * @param maybeNullObjects
-   *          variable number of Objects to check if null
-   * @return
-   */
-  public static boolean errorOnNull( String msg, Object... maybeNullObjects ) {
-    return errorOnNull( true, msg, maybeNullObjects );
-  }
-
     /**
      * Writes to stderr and throws and catches an exception printing a stack
      * trace.
@@ -214,7 +186,6 @@ public class Debug {
     public static void error(String msg) {
         error(true, msg);
     }
-
 
     /**
      * Writes to stderr and throws and catches an exception, optionally printing
