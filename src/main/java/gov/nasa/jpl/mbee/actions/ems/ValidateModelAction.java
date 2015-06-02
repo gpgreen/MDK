@@ -33,7 +33,7 @@ import gov.nasa.jpl.mbee.ems.ValidateModelRunner;
 import gov.nasa.jpl.mbee.lib.Utils;
 
 import java.awt.event.ActionEvent;
-ava.util.ArrayList;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import com.nomagic.magicdraw.actions.MDAction;
