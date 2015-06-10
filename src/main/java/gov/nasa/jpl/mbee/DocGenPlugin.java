@@ -53,7 +53,6 @@ public class DocGenPlugin extends Plugin {
     // Variables for running embedded web server for exposing services
     private DocGenEmbeddedServer        embeddedServer;
     private boolean                     runEmbeddedServer     = false;
-    protected OclEvaluatorPlugin        oclPlugin             = null;
     protected ValidateConstraintsPlugin vcPlugin              = null;
     protected AutoSyncPlugin            autoSyncPlugin        = null;
     public static ClassLoader           extensionsClassloader = null;
@@ -91,7 +90,6 @@ public class DocGenPlugin extends Plugin {
         acm.addMainMenuConfigurator(new MMSConfigurator());
         EvaluationConfigurator.getInstance().registerBinaryImplementers(DocGenPlugin.class.getClassLoader());
 
-        getOclPlugin().init();
         getVcPlugin().init();
         getAutoSyncPlugin().init();
         (new Thread(new OutputSyncRunner())).start();
@@ -108,13 +106,6 @@ public class DocGenPlugin extends Plugin {
         }
         
         loadExtensionJars(); // people can actaully just create a new plugin and
-    }
-
-    public OclEvaluatorPlugin getOclPlugin() {
-        if (oclPlugin == null) {
-            oclPlugin = new OclEvaluatorPlugin();
-        }
-        return oclPlugin;
     }
 
     public ValidateConstraintsPlugin getVcPlugin() {
