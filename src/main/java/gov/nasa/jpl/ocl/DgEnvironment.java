@@ -62,10 +62,6 @@ public class DgEnvironment extends EcoreEnvironment {
         super(registry);
     }
 
-    public DgEnvironment(EcoreEnvironmentFactory fac, Resource resource) {
-        super(fac, resource);
-    }
-
     // this constructor is used to initialize child environments
     DgEnvironment(DgEnvironment parent) {
         super(parent);
